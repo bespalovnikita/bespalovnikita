@@ -16,66 +16,56 @@ public class Formatter {
         char close='}';
         char bracket=';';
         int opencount=0;
-        boolean inputclose=false;
+        boolean isclose=false;
         boolean opened=false;
         boolean isbracket=false;
         String retext="";
-        boolean nextstring=false;
-        boolean nextstring2=false;
-
+        boolean sth=false;
         for (int i=0; i< text.length(); i++){
-            if (nextstring){
-                retext = retext + "\n";
-                for (int j = 0; j < opencount; j++){
-                    retext = retext + space;
-                }
-            }
-
-            if (nextstring2) {
-                retext = retext + "\n";
-                for (int j = 0; j < opencount - 1; j++) {
-                    retext = retext + space;
-                }
-            }
-
-            inputclose=false;
-            nextstring=false;
-            nextstring2=false;
+            sth=false;
 
             if(text.charAt(i)==open){
                 opencount= opencount +1;
                 opened=true;
-                nextstring=true;
+                isclose=false;
+                retext = retext+open + "\n";
+                for (int j = 0; j < opencount; j++) {
+                    retext = retext + space;
+                }
+                sth=true;
             }
 
             if((text.charAt(i)==close)&&(opened)){
                 opencount = opencount - 1;
-                if (!isbracket) {
+                sth=true;
+                if((!isclose)&&(!isbracket)) {
                     retext = retext + "\n";
                 }
-                inputclose = true;
-            }
-
-            if (opened){
-                if (inputclose)
-                {
+                if((!isclose)&&(!isbracket)){
                     for (int j = 0; j < opencount; j++) {
                         retext = retext + space;
-
                     }
-                   nextstring2=true;
                 }
-                isbracket=false;
+                retext = retext +close+"\n";
+                for (int j = 0; j < opencount-1; j++) {
+                    retext = retext + space;
+                }
+                isclose=true;
+            }
+            isbracket=false;
+
+            if((text.charAt(i)==bracket)&&(opened)) {
+                sth=true;
+                isclose=false;
+                isbracket=true;
+                retext = retext + bracket + "\n";
+                for (int j = 0; j < opencount; j++) {
+                    retext = retext + space;
+                }
+            }
+            if ((opened)&&(!sth)){
                 retext= retext+text.charAt(i);
-                if((text.charAt(i)==bracket)&&(opened)){
-                    retext = retext + "\n";
-                    isbracket=true;
-                    for (int j = 0; j < opencount; j++) {
-                        retext = retext + space;
-                    }
                 }
-
-            }
 
             if ((opened)&&(opencount==0)) {
                 break;
