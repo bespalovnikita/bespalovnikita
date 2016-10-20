@@ -6,7 +6,7 @@
 import java.text.*;
 import javax.swing.*;
 
-public class CompoundInterest{
+public class Formatter {
 
     public static void main(String[] args)    {
         String text = JOptionPane.showInputDialog
@@ -18,9 +18,11 @@ public class CompoundInterest{
         int opencount=0;
         boolean inputclose=false;
         boolean opened=false;
+        boolean isbracket=false;
         String retext="";
         boolean nextstring=false;
         boolean nextstring2=false;
+
         for (int i=0; i< text.length(); i++){
             if (nextstring){
                 retext = retext + "\n";
@@ -48,7 +50,9 @@ public class CompoundInterest{
 
             if((text.charAt(i)==close)&&(opened)){
                 opencount = opencount - 1;
-                retext = retext + "\n";
+                if (!isbracket) {
+                    retext = retext + "\n";
+                }
                 inputclose = true;
             }
 
@@ -61,9 +65,11 @@ public class CompoundInterest{
                     }
                    nextstring2=true;
                 }
+                isbracket=false;
                 retext= retext+text.charAt(i);
                 if((text.charAt(i)==bracket)&&(opened)){
                     retext = retext + "\n";
+                    isbracket=true;
                     for (int j = 0; j < opencount; j++) {
                         retext = retext + space;
                     }
