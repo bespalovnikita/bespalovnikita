@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
 /**
  *Read string form dialogue and then formatting it.
  */
-class Formatter {
+public class Formatter {
     /** {@inheritDoc} */
-    final void main(final String[] args) {
+    public final void main(final String[] args) {
 
         String text = JOptionPane.showInputDialog("Write string");
         String space = "    ";
