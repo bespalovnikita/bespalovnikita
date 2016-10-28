@@ -7,20 +7,20 @@
 /**
 *Read string form dialogue and then formatting it.
  */
-package main.java.Formatter;
+package formatter;
 
 
 
-
-import javax.swing.JOptionPane;
+import java.util.Scanner;
 /**
- *Read string form dialogue and then formatting it.
+ *Read string form stream and then formatting it.
  */
 public class Formatter {
     /** {@inheritDoc} */
     public final void main(final String[] args) {
-
-        String text = JOptionPane.showInputDialog("Write string");
+        Scanner sc = new Scanner(System.in);
+        String text;
+        text = sc.nextLine();
         String space = "    ";
         char open = '{';
         char close = '}';
