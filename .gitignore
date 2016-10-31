@@ -1,8 +1,15 @@
 .idea/
 target/
 out/
+images/
+styles/
+templates/
+
 
 *.iml
 *.txt
 *.class
 *.jar
+*.png
+*.html
+*.css
