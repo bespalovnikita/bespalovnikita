@@ -1,9 +1,6 @@
 .idea/
 target/
 out/
-images/
-styles/
-templates/
 
 
 *.iml
