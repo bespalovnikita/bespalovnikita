@@ -10,6 +10,3 @@ templates/
 *.txt
 *.class
 *.jar
-*.png
-*.html
-*.css
